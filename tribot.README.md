@@ -5,3 +5,4 @@
 #目前问题：
 #ns_tribot.launch.py文件中无法使用参数robot_name,只能直接使用PushRosNamespace(‘@@@’)命令，(@@@可以是tribot1等)，即舍弃robot_name参数；
 而无法通过PushRosNamespace(robot_name)命令实时修改命名空间。
+#也就是需要解决参数robot_name在launch文件中的传递问题。
