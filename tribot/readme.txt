@@ -1,11 +1,8 @@
-需要四个终端
-终端1：roslaunch tribot_description view_tribot_gazebo_world.launch
-将小车生成在一个空的世界中。
+#通过ros2 launch tribot ns_tribot.launch.py启动所有节点，并加上命名空间
+#通过ros2 run tribot tribot_teleop启动键盘控制节点
+#可以用ros2 param set命令修改机器人命名空间（由参数robot_name控制）的名称
 
-终端2：roslaunch tribot_description  set_kinematic.launch
-小车的运动学模型节点，根据控制输入和运动学模型，输出在gazebo中的位置
-
-终端3：roslaunch tribot_description tribot_teleop.launch
-键盘控制运动节点
-
-终端4：rviz或者其他可视化节点
+#目前问题：
+#ns_tribot.launch.py文件中无法使用参数robot_name,只能直接使用PushRosNamespace(‘@@@’)命令，(@@@可以是tribot1等)，即舍弃robot_name参数；
+而无法通过PushRosNamespace(robot_name)命令实时修改命名空间。
+#也就是需要解决参数robot_name在launch文件中的传递问题。
