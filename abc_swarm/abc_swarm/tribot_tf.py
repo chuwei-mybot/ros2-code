@@ -7,7 +7,7 @@ from tf2_ros import *
 import tf_transformations
 import geometry_msgs.msg
 from tf2_ros import TransformBroadcaster  
-from tribot_interface.config import tf_pid
+#from tribot_interface.config import tf_pid
 import numpy as np
 from simple_pid import PID
 

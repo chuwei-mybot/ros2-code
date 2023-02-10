@@ -2,7 +2,7 @@
 <robot name="tribot_base" xmlns:xacro="http://www.ros.org/wiki/xacro">
     <xacro:macro name="tribot_base">
         <!-- base link 在地面的投影 -->
-        <link name="base_footprint">
+        <link name="${tf_prefix}base_footprint">
             <visual>
                 <origin xyz="0 0 0" rpy="0 0 0" />
                 <geometry>
@@ -10,17 +10,17 @@
                 </geometry>
             </visual>
         </link>
-        <gazebo reference="base_footprint">
+        <gazebo reference="${tf_prefix}base_footprint">
             <turnGravityOff>false</turnGravityOff>
         </gazebo>
         <joint name="base_footprint_joint" type="fixed">
             <origin xyz="0 0 0.01" rpy="0 0 0" />  <!-- 0.01m is the height of base...between the 2 frames -->    
-            <parent link="base_footprint"/>
-            <child link="base_link" />
+            <parent link="${tf_prefix}base_footprint"/>
+            <child link="${tf_prefix}base_link" />
         </joint>
 
         <link
-            name="base_link">
+            name="${tf_prefix}base_link">
             <inertial>
             <origin
                 xyz="-0.0142603857901154 0.0599787969233426 1.44010907857361E-17"
@@ -60,7 +60,7 @@
             </collision>
         </link>
 
-        <gazebo reference="base_link">
+        <gazebo reference="${tf_prefix}base_link">
             <material>Gazebo/White</material>
         </gazebo>
     </xacro:macro>

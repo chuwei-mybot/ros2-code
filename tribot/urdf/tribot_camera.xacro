@@ -2,7 +2,7 @@
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="tribot_camera">
     <xacro:macro name="tribot_camera" params="prefix:=camera">
         <link
-            name="camera_link">
+            name="${tf_prefix}camera_link">
             <inertial>
             <origin
                 xyz="-0.00733675940313475 9.73715840950891E-05 -0.00320483732373046"
@@ -43,10 +43,10 @@
         </link>
 
         <!-- reference here must be the same with link name above -->
-        <gazebo reference="camera_link">
+        <gazebo reference="${tf_prefix}camera_link">
             <material>Gazebo/Red</material>
         </gazebo>
-        <gazebo reference="camera_link">
+        <gazebo reference="${tf_prefix}camera_link">
             <sensor type="depth" name="${prefix}">
                 <always_on>true</always_on>
                 <update_rate>20.0</update_rate>
@@ -67,12 +67,12 @@
                     <cameraName>${prefix}</cameraName>
                     <alwaysOn>true</alwaysOn>
                     <updateRate>10</updateRate>
-                    <imageTopicName>rgb/image_raw</imageTopicName>
-                    <depthImageTopicName>depth/image_raw</depthImageTopicName>
-                    <pointCloudTopicName>depth/points</pointCloudTopicName>
-                    <cameraInfoTopicName>rgb/camera_info</cameraInfoTopicName>
-                    <depthImageCameraInfoTopicName>depth/camera_info</depthImageCameraInfoTopicName>
-                    <frameName>camera_link</frameName>
+                    <imageTopicName>rgb/${tf_prefix}image_raw</imageTopicName>
+                    <depthImageTopicName>depth/${tf_prefix}image_raw</depthImageTopicName>
+                    <pointCloudTopicName>depth/${tf_prefix}points</pointCloudTopicName>
+                    <cameraInfoTopicName>rgb/${tf_prefix}camera_info</cameraInfoTopicName>
+                    <depthImageCameraInfoTopicName>depth/${tf_prefix}camera_info</depthImageCameraInfoTopicName>
+                    <frameName>${tf_prefix}camera_link</frameName>
                     <!-- the same name with reference="camera_link" -->
                     <baseline>0.1</baseline>
                     <distortion_k1>0.0</distortion_k1>

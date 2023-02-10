@@ -4,7 +4,7 @@
     <xacro:macro name="tribot_lidar">
         <!-- Create laser reference frame -->
         <link
-            name="lidar_link">
+            name="${tf_prefix}lidar_link">
             <inertial>
             <origin
                 xyz="1.36434720762702E-05 -1.44740607596658E-18 -0.00698948248298292"
@@ -45,10 +45,10 @@
         </link>
 
         <!-- reference here must be the same with link name above -->
-        <gazebo reference="lidar_link">
+        <gazebo reference="${tf_prefix}lidar_link">
             <material>Gazebo/Black</material>
         </gazebo>
-        <gazebo reference="lidar_link">
+        <gazebo reference="${tf_prefix}lidar_link">
             <sensor type="ray" name="tribot_lidar">
                 <pose>0 0 0 0 0 0</pose>
                 <visualize>false</visualize>
@@ -75,8 +75,8 @@
                 </ray>
                 <plugin name="gazebo_rplidar" filename="libgazebo_ros_laser.so">
                     <robotNamespace>/</robotNamespace>
-                    <topicName>/scan</topicName>
-                    <frameName>lidar_link</frameName>
+                    <topicName>/${tf_prefix}scan</topicName>
+                    <frameName>${tf_prefix}lidar_link</frameName>
                     <!-- the same name with reference="lidar_link" -->
                 </plugin>
             </sensor>

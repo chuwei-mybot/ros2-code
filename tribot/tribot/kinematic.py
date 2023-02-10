@@ -37,26 +37,16 @@ class Set_Model_State(Node):
         self.tf_broadcaster = TransformBroadcaster(self)
         self.control_rate=10        # need to be adjusted further according to dt
         # publish the new position of levitator to gazebo
-        self.state_pub = self.create_publisher(ModelState,'gazebo/set_model_state',10)
+        self.state_pub = self.create_publisher(ModelState,'/leader_tribot/gazebo/set_model_state',10)
         # subscribe control input
-        self.rate_sub = self.create_subscription (Twist,'/cmd_vel',self.MotionCallback,10)
-        self.state_sub = self.create_subscription(ModelState,"gazebo/set_model_state", self.broadcast_odom_tf,10)
-    
+        self.rate_sub = self.create_subscription (Twist,'/leader_tribot/cmd_vel',self.MotionCallback,10)
+        self.state_sub = self.create_subscription(ModelState,"/leader_tribot/gazebo/set_model_state", self.broadcast_odom_tf,10)
+
     def broadcast_odom_tf(self,model_state):
-        '''
-        parent_frame = 'odom'
-        child_frame = 'base_footprint'                 
-        time_now = self.get_clock().now().seconds_nanoseconds()[0]
-        translation = (model_state.pose.position.x, model_state.pose.position.y, model_state.pose.position.z)
-        rotation = (model_state.pose.orientation.x,model_state.pose.orientation.y,model_state.pose.orientation.z,model_state.pose.orientation.w)
-        # Send the transformation
-        self.tf_broadcaster.sendTransform(translation, rotation, time_now,child_frame,parent_frame)
-                                      # 创建一个坐标变换的消息对象
-        '''
         transform = TransformStamped() 
         transform.header.stamp = self.get_clock().now().to_msg()      # 设置坐标变换消息的时间戳
-        transform.header.frame_id = 'odom'                           # 设置一个坐标变换的源坐标系
-        transform.child_frame_id = 'base_footprint'                   # 设置一个坐标变换的目标坐标系
+        transform.header.frame_id = 'world'                           # 设置一个坐标变换的源坐标系
+        transform.child_frame_id = 'leader_tribot/base_footprint'                   # 设置一个坐标变换的目标坐标系
         transform.transform.translation.x = model_state.pose.position.x                     # 设置坐标变换中的X、Y、Z向的平移
         transform.transform.translation.y = model_state.pose.position.y
         transform.transform.translation.z = model_state.pose.position.z
@@ -73,20 +63,20 @@ class Set_Model_State(Node):
     # @return   NULL
     def MotionCallback(self,cmd_vel):
         state_t = ModelState()
-        state_t.model_name = "tribot"
+        state_t.model_name = "leader_tribot"
         self.current_time = self.get_clock().now().seconds_nanoseconds()[0]
         self.dt = self.current_time - self.last_t
         
         if (self.last_t==0):
             self.last_t = self.current_time
             initial_state = self.state
-            initial_state_pub = self.Generate_State(initial_state,"tribot")
+            initial_state_pub = self.Generate_State(initial_state,"leader_tribot")
             # rospy.loginfo(initial_state_pub)
             self.state_pub.publish(initial_state_pub)
         else :
             self.last_t = self.current_time
             self.state = self.forward_dynamics(self.state, cmd_vel)
-            state_t_pub=self.Generate_State(self.state,"tribot")
+            state_t_pub=self.Generate_State(self.state,"leader_tribot")
             # rospy.loginfo(state_t_pub)
             self.state_pub.publish(state_t_pub)
 
