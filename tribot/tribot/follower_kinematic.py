@@ -106,7 +106,7 @@ class Set_Model_State(Node):
                 'z='+str(
             msg.angular.z  ))
         
-        scale_forward_speed = -1                         # 根据海龟距离，计算线速度
+        scale_forward_speed = 0.5                         # 根据海龟距离，计算线速度
         msg.linear.x = scale_forward_speed * math.sqrt(
             trans.transform.translation.x ** 2 +
             trans.transform.translation.y ** 2)
