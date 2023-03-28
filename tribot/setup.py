@@ -40,8 +40,10 @@ setup(
         'console_scripts': [
          'tribot_teleop       = tribot.tribot_teleop:main',
          'kinematic       = tribot.kinematic:main',
-         'tf_broadcaster     =tribot.tf_broadcaster:main',
-         'follower_kinematic=tribot.follower_kinematic:main'
+         'tf_broadcaster1     =tribot.tf_broadcaster1:main',
+         'tf_broadcaster2     =tribot.tf_broadcaster2:main',
+         'follower_kinematic1=tribot.follower_kinematic1:main',
+         'follower_kinematic2=tribot.follower_kinematic2:main'
         ],
     },
 )

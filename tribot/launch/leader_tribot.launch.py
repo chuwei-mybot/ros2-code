@@ -46,11 +46,18 @@ def generate_launch_description():
     kinematic_node = Node(package='tribot', executable='kinematic',
                         output='screen')
    
- 
+    rviz2_node = Node(
+        package='rviz2',
+        executable='rviz2',
+        name='rviz2',
+        output='screen',
+        )
+
     return LaunchDescription([
          tribot,
          #gazebo,
-         spawn_entity,
-         kinematic_node 
+         #spawn_entity,
+         kinematic_node,
+         rviz2_node 
         
    ])

@@ -35,11 +35,11 @@ def generate_launch_description():
 
     # Process the URDF file
     pkg_path = os.path.join(get_package_share_directory('tribot'))
-    xacro_file = os.path.join(pkg_path,'urdf','tribot_gazebo.xacro')
+    xacro_file = os.path.join(pkg_path,'urdf','tribot_gazebo_follower2.xacro')
     robot_description_config = xacro.process_file(xacro_file)
     
     package_name = 'tribot'
-    urdf_name = "tribot_gazebo.xacro"
+    urdf_name = "tribot_gazebo_follower2.xacro"
     ld = LaunchDescription()
     pkg_share = FindPackageShare(package=package_name).find(package_name) 
     urdf_model_path = os.path.join(pkg_share, f'urdf/{urdf_name}')
@@ -53,7 +53,7 @@ def generate_launch_description():
         parameters=[params]
     )
 
-    joint_state_publisher_node = Node(
+    joint_state_publisher_node2 = Node(
         package='joint_state_publisher_gui',
         executable='joint_state_publisher_gui',
         name='joint_state_publisher_gui',
@@ -68,5 +68,5 @@ def generate_launch_description():
             description='Use sim time if true'),
 
         node_robot_state_publisher,
-        joint_state_publisher_node
+        joint_state_publisher_node2
     ])

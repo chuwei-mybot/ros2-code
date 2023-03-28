@@ -35,12 +35,13 @@ class Set_Model_State(Node):
         self.current_time = self.get_clock().now()
         self.state = self.State(init_x, init_y, init_z, init_theta) # 初始xyz
         self.tf_broadcaster = TransformBroadcaster(self)
-        self.control_rate=10        # need to be adjusted further according to dt
+        self.control_rate=1000        # need to be adjusted further according to dt
         # publish the new position of levitator to gazebo
         self.state_pub = self.create_publisher(ModelState,'/leader_tribot/gazebo/set_model_state',10)
         # subscribe control input
         self.rate_sub = self.create_subscription (Twist,'/leader_tribot/cmd_vel',self.MotionCallback,10)
         self.state_sub = self.create_subscription(ModelState,"/leader_tribot/gazebo/set_model_state", self.broadcast_odom_tf,10)
+
 
     def broadcast_odom_tf(self,model_state):
         transform = TransformStamped() 
@@ -123,7 +124,7 @@ if __name__ == '__main__':
         pass
 '''
 def main(args=None):                                 # ROS2节点主入口main函数
-    rclpy.init(args='set_kinematic')                            # ROS2 Python接口初始化
+    rclpy.init(args=args)                            # ROS2 Python接口初始化
     node = Set_Model_State("tribot")        # 创建ROS2节点对象并进行初始化
     rclpy.spin(node)                                 # 循环等待ROS2退出
     node.destroy_node()                              # 销毁节点对象
