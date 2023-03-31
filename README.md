@@ -1,4 +1,4 @@
-#启动leader小车
+#启动leader小车 
 $ros2 launch tribot leader_tribot.launch.py 
 #启动跟随小车tribot1
 $ros2 launch tribot tribot_spawn_robot1.launch.py robot_name:tribot1
