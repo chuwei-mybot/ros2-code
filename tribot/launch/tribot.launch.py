@@ -1,21 +1,3 @@
-'''
-FileName: 
-Description: 
-Autor: Liujunjie/Aries-441
-StudentNumber: 521021911059
-Date: 2022-11-13 19:34:39
-E-mail: sjtu.liu.jj@gmail.com/sjtu.1518228705@sjtu.edu.cn
-LastEditTime: 2022-11-13 21:16:55
-'''
-'''
-FileName: 
-Description: 
-Autor: Liujunjie/Aries-441
-StudentNumber: 521021911059
-Date: 2022-11-13 19:34:39
-E-mail: sjtu.liu.jj@gmail.com/sjtu.1518228705@sjtu.edu.cn
-LastEditTime: 2022-11-13 20:27:01
-'''
 import os
 
 from ament_index_python.packages import get_package_share_directory
@@ -68,5 +50,5 @@ def generate_launch_description():
             description='Use sim time if true'),
 
         node_robot_state_publisher,
-        joint_state_publisher_node
+        #joint_state_publisher_node
     ])

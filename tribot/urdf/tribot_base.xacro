@@ -41,7 +41,7 @@
                 rpy="0 0 0" />
             <geometry>
                 <mesh
-                filename="package://tribot/meshes/base_link.STL" />
+                filename="file://$(find tribot)/meshes/base_link.STL" />
             </geometry>
             <material
                 name="">
@@ -55,7 +55,7 @@
                 rpy="0 0 0" />
             <geometry>
                 <mesh
-                filename="package://tribot/meshes/base_link.STL" />
+                filename="file://$(find tribot)/meshes/base_link.STL" />
             </geometry>
             </collision>
         </link>

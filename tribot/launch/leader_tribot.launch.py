@@ -55,9 +55,9 @@ def generate_launch_description():
 
     return LaunchDescription([
          tribot,
-         #gazebo,
-         #spawn_entity,
+         gazebo,
+         spawn_entity,
          kinematic_node,
-         rviz2_node 
+         #rviz2_node 
         
    ])

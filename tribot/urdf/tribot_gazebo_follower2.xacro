@@ -29,7 +29,7 @@
             rpy="0 0 0" />
           <geometry>
             <mesh
-              filename="package://tribot/meshes/wheel1_link.STL" />
+              filename="file://$(find tribot)/meshes/wheel1_link.STL" />
           </geometry>
           <material
             name="">
@@ -43,7 +43,7 @@
             rpy="0 0 0" />
           <geometry>
             <mesh
-              filename="package://tribot/meshes/wheel1_link.STL" />
+              filename="file://$(find tribot)/meshes/wheel1_link.STL" />
           </geometry>
         </collision>
       </link>
@@ -85,7 +85,7 @@
             rpy="0 0 0" />
           <geometry>
             <mesh
-              filename="package://tribot/meshes/wheel2_link.STL" />
+              filename="file://$(find tribot)/meshes/wheel2_link.STL" />
           </geometry>
           <material
             name="">
@@ -99,7 +99,7 @@
             rpy="0 0 0" />
           <geometry>
             <mesh
-              filename="package://tribot/meshes/wheel2_link.STL" />
+              filename="file://$(find tribot)/meshes/wheel2_link.STL" />
           </geometry>
         </collision>
       </link>
@@ -141,7 +141,7 @@
             rpy="0 0 0" />
           <geometry>
             <mesh
-              filename="package://tribot/meshes/wheel3_link.STL" />
+              filename="file://$(find tribot)/meshes/wheel3_link.STL" />
           </geometry>
           <material
             name="">
