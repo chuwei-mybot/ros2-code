@@ -1,14 +1,17 @@
-## 通过ros2 launch tribot leader_tribot.launch.py启动领导者小车leader_tribot
-## 通过ros2 launch tribot tribot_spawn_robot.launch.py启动跟随的小车tribot1
-## 通过ros2 run tribot tribot_teleop 启动键盘控制节点
-## 通过ros2 run tribot tf_broadcaster启动tf播报
-## 通过ros2 run tribot follower_kinematic启动跟随者运动控制节点
-## 结束tf_broadcaster命令，小车可以正常控制
-
-## 可视化：通过ros2 run plotjuggler plotjuggler打开plotjuggler,并订阅$$/gazebo/ModelState话题来显示小车位置
-相关操作见[CSDN](https://shoufei.blog.csdn.net/article/details/124534170?spm=1001.2014.3001.5506)
-
-## 目前问题：
-## 没有完全解决参数传递问题，即无法通过命令行给跟随者小车增加命名空间
-## tf_broadcaster.py文件存在问题（只能勉强运行）
+##启动leader小车 
+##$ros2 launch tribot leader_tribot.launch.py 
+##启动跟随小车tribot1
+##$ros2 launch tribot tribot_spawn_robot1.launch.py robot_name:tribot1
+##启动leader小车的键盘控制节点
+##$ros2 run tribot tribot_teleop
+##启动tribot1的tf广播节点
+##$ros2 run tribot tf_broadcaster1
+##启动tribot1的运动控制节点
+##$ros2 run follower_kinematic1   #之后关闭第8行代码中的tf广播节点
+##启动跟随小车tribot2
+##$ros2 launch tribot tribot_spawn_robot2.launch.py robot_name:tribot2
+##启动tribot2的tf广播节点
+##$ros2 run tribot tf_broadcaster2
+##启动tribot2的运动控制节点
+##$ros2 run follower_kinematic2   #之后关闭第14行代码中的tf广播节点
 
